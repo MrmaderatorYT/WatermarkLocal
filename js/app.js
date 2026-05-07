@@ -225,7 +225,7 @@ function clearImages() {
 function renderImageList() {
   DOM.imageList.innerHTML = '';
   DOM.imageCount.textContent = state.images.length
-    ? `${state.images.length} file${state.images.length > 1 ? 's' : ''}`
+    ? `${state.images.length} file${state.images.length !== 1 ? 's' : ''}`
     : '';
 
   state.images.forEach((img, i) => {
@@ -440,7 +440,7 @@ function getPosition(position, W, H) {
 let resultBuffers = []; // { fileName, buffer, mimeType }
 
 async function startBatchProcessing() {
-  if (!state.images.length) { alert('Будь ласка, додайте хоча б одне зображення.'); return; }
+  if (!state.images.length) { alert('Please add at least one image.'); return; }
   if (state.processing) return;
 
   state.processing = true;
@@ -558,13 +558,13 @@ async function processMainThread(settings, total) {
 function updateProgress(done, total) {
   const pct = Math.round((done / total) * 100);
   DOM.progressFill.style.width = pct + '%';
-  DOM.progressText.textContent = `Processing ${done} / ${total}`;
+  DOM.progressText.textContent = `Processing ${done} of ${total}…`;
 }
 
 function finishProcessing() {
   state.processing = false;
   DOM.processBtn.disabled = false;
-  DOM.progressText.textContent = `Done! ${resultBuffers.filter(Boolean).length} images processed.`;
+  DOM.progressText.textContent = `Done — ${resultBuffers.filter(Boolean).length} image(s) saved.`;
 
   // Auto-download if single file, else show Download All
   const valid = resultBuffers.filter(Boolean);

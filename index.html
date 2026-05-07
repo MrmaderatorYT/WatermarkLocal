@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>WatermarkPro — Сервіс вотермарок</title>
-  <meta name="description" content="Додайте текстові або логотип-вотермарки до зображень прямо в браузері. Пакетна обробка, PNG/JPEG експорт."/>
+  <title>WatermarkLocal — Free Browser Watermark Tool</title>
+  <meta name="description" content="Add text or logo watermarks to images directly in your browser. Batch processing, real-time preview, PNG/JPEG export. No uploads, no servers."/>
   <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
@@ -13,67 +13,74 @@
 <header class="header">
   <div class="logo">
     <div class="logo-mark">
-      <!-- droplet icon -->
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 2C6 10 4 14 4 16a8 8 0 0016 0c0-2-2-6-8-14z"/>
       </svg>
     </div>
-    <span class="logo-name">Watermark</span>
+    <span class="logo-name">WatermarkLocal</span>
   </div>
-  <span class="header-pill">Безкоштовно · 100% у браузері</span>
+  <div class="header-right">
+    <span class="header-pill">Free &amp; 100% in-browser</span>
+    <a class="header-github" href="https://github.com/MrmaderatorYT/WatermarkLocal" target="_blank" rel="noopener" title="View on GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+        <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.026 2.747-1.026.546 1.378.202 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.2 22 16.447 22 12.021 22 6.484 17.522 2 12 2z"/>
+      </svg>
+      GitHub
+    </a>
+  </div>
 </header>
 
 <!-- ─── APP ────────────────────────────────────────────────────────────── -->
 <div class="app">
 
-  <!-- ╔══════ SIDEBAR ════════════════════════════════════════════════════╗ -->
+  <!-- ╔══════ SIDEBAR ═══════════════════════════════════════════════════╗ -->
   <aside class="sidebar">
     <div class="sidebar-scroll">
 
       <!-- 1. Upload -->
-      <p class="section-title">Зображення</p>
+      <p class="section-title">Images</p>
 
       <div id="drop-zone">
         <div class="dz-icon">↑</div>
         <p class="dz-text">
-          <strong>Оберіть файли</strong> або перетягніть сюди
+          <strong>Choose files</strong> or drag &amp; drop here
         </p>
-        <p class="dz-hint">JPG, PNG, WebP · кілька файлів</p>
+        <p class="dz-hint">JPG, PNG, WebP · multiple files supported</p>
       </div>
       <input type="file" id="file-input" accept="image/*" multiple hidden/>
 
       <div class="image-list-header">
         <span id="image-count" class="image-count"></span>
-        <button id="clear-images-btn">Очистити</button>
+        <button id="clear-images-btn">Clear all</button>
       </div>
       <div id="image-list"></div>
 
       <div class="divider"></div>
 
       <!-- 2. Type -->
-      <p class="section-title">Тип вотермарки</p>
+      <p class="section-title">Watermark type</p>
 
       <div class="wm-type-toggle">
         <label>
           <input type="radio" name="wm-type" id="wm-type-text" checked/>
-          <span>Текст</span>
+          <span>Text</span>
         </label>
         <label>
           <input type="radio" name="wm-type" id="wm-type-image"/>
-          <span>Логотип</span>
+          <span>Logo</span>
         </label>
       </div>
 
       <!-- TEXT panel -->
       <div id="panel-text">
         <div class="setting-group">
-          <label class="setting-label" for="wm-text">Текст</label>
+          <label class="setting-label" for="wm-text">Text</label>
           <input id="wm-text" class="input-field" type="text"
-                 value="© WatermarkPro" placeholder="Ваш текст…"/>
+                 value="© WatermarkLocal" placeholder="Your text…"/>
         </div>
 
         <div class="setting-group">
-          <label class="setting-label" for="wm-font-family">Шрифт</label>
+          <label class="setting-label" for="wm-font-family">Font</label>
           <select id="wm-font-family" class="input-field">
             <option value="Inter">Inter</option>
             <option value="Georgia">Georgia</option>
@@ -86,14 +93,14 @@
 
         <div class="setting-group">
           <label class="setting-label">
-            Розмір
+            Font size
             <span id="wm-font-size-val" class="setting-val">48</span>
           </label>
           <input id="wm-font-size" type="range" min="8" max="200" value="48"/>
         </div>
 
         <div class="setting-group">
-          <label class="setting-label">Колір</label>
+          <label class="setting-label">Color</label>
           <div class="color-row">
             <label class="color-swatch" style="background:#1a1a18">
               <input type="color" id="wm-color" value="#1a1a18"
@@ -107,11 +114,11 @@
 
         <label class="check-row">
           <input type="checkbox" id="wm-shadow" checked/>
-          Тінь
+          Text shadow
         </label>
         <label class="check-row">
           <input type="checkbox" id="wm-stroke"/>
-          Обводка
+          Text outline
         </label>
       </div>
 
@@ -119,14 +126,14 @@
       <div id="panel-image">
         <div id="logo-drop-zone">
           <img id="logo-preview" src="" alt=""/>
-          <p>Перетягніть логотип або <strong>оберіть файл</strong></p>
+          <p>Drop a logo or <strong>choose a file</strong></p>
           <div id="logo-name"></div>
         </div>
         <input type="file" id="logo-input" accept="image/*" hidden/>
 
         <div class="setting-group">
           <label class="setting-label">
-            Розмір
+            Logo size
             <span id="wm-logo-scale-val" class="setting-val">20%</span>
           </label>
           <input id="wm-logo-scale" type="range" min="2" max="80" value="20"/>
@@ -136,11 +143,11 @@
       <div class="divider"></div>
 
       <!-- 3. Settings -->
-      <p class="section-title">Налаштування</p>
+      <p class="section-title">Settings</p>
 
       <div class="setting-group">
         <label class="setting-label">
-          Прозорість
+          Opacity
           <span id="wm-opacity-val" class="setting-val">60%</span>
         </label>
         <input id="wm-opacity" type="range" min="5" max="100" value="60"/>
@@ -148,14 +155,14 @@
 
       <div class="setting-group">
         <label class="setting-label">
-          Кут нахилу
+          Rotation
           <span id="wm-angle-val" class="setting-val">−30°</span>
         </label>
         <input id="wm-angle" type="range" min="-180" max="180" value="-30"/>
       </div>
 
       <div class="toggle-row">
-        <span>Плиткове замощення</span>
+        <span>Tile / repeat</span>
         <label class="toggle">
           <input type="checkbox" id="wm-tile"/>
           <span class="toggle-track"></span>
@@ -165,14 +172,14 @@
       <div id="tile-options">
         <div class="setting-group">
           <label class="setting-label">
-            Відстань X
+            Spacing X
             <span id="wm-tile-spacing-x-val" class="setting-val">300px</span>
           </label>
           <input id="wm-tile-spacing-x" type="range" min="50" max="800" value="300"/>
         </div>
         <div class="setting-group">
           <label class="setting-label">
-            Відстань Y
+            Spacing Y
             <span id="wm-tile-spacing-y-val" class="setting-val">200px</span>
           </label>
           <input id="wm-tile-spacing-y" type="range" min="50" max="600" value="200"/>
@@ -180,25 +187,25 @@
       </div>
 
       <div class="setting-group">
-        <label class="setting-label">Позиція</label>
+        <label class="setting-label">Position</label>
         <div id="position-grid"></div>
       </div>
 
       <div class="divider"></div>
 
       <!-- 4. Export -->
-      <p class="section-title">Експорт</p>
+      <p class="section-title">Export</p>
 
       <div class="output-row">
         <select id="output-format" class="input-field">
-          <option value="png">PNG — без втрат</option>
-          <option value="jpeg">JPEG — стиснутий</option>
+          <option value="png">PNG — lossless</option>
+          <option value="jpeg">JPEG — compressed</option>
         </select>
       </div>
 
       <div class="setting-group" id="jpeg-quality-row" style="display:none">
         <label class="setting-label">
-          Якість
+          Quality
           <span id="jpeg-quality-val" class="setting-val">90%</span>
         </label>
         <input id="jpeg-quality" type="range" min="10" max="100" value="90"/>
@@ -213,12 +220,12 @@
           <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
           <polyline points="17 6 23 6 23 12"/>
         </svg>
-        Застосувати вотермарку
+        Apply watermark
       </button>
 
       <div id="progress-bar">
         <div class="progress-track"><div id="progress-fill"></div></div>
-        <p id="progress-text">Обробка…</p>
+        <p id="progress-text">Processing…</p>
       </div>
 
       <button id="download-all" class="btn btn-secondary hidden">
@@ -227,17 +234,17 @@
           <polyline points="7 10 12 15 17 10"/>
           <line x1="12" y1="15" x2="12" y2="3"/>
         </svg>
-        Завантажити всі
+        Download all
       </button>
     </div>
   </aside>
   <!-- ╚══════ /SIDEBAR ═══════════════════════════════════════════════════╝ -->
 
-  <!-- ╔══════ PREVIEW ══════════════════════════════════════════════════════╗ -->
+  <!-- ╔══════ PREVIEW ═══════════════════════════════════════════════════╗ -->
   <main class="main">
     <div class="preview-topbar">
-      <span class="preview-topbar-title">Попередній перегляд</span>
-      <span class="preview-meta">Оновлюється в реальному часі</span>
+      <span class="preview-topbar-title">Preview</span>
+      <span class="preview-meta">Updates in real time</span>
     </div>
 
     <div id="preview-wrap">
@@ -245,12 +252,12 @@
 
       <div id="preview-empty">
         <div class="empty-icon">◻</div>
-        <p class="empty-text">Немає зображень</p>
-        <p class="empty-hint">Завантажте файли в ліву панель, щоб побачити попередній перегляд</p>
+        <p class="empty-text">No images loaded</p>
+        <p class="empty-hint">Upload files via the left panel to see a real-time preview</p>
       </div>
     </div>
   </main>
-  <!-- ╚══════ /PREVIEW ════════════════════════════════════════════════════╝ -->
+  <!-- ╚══════ /PREVIEW ══════════════════════════════════════════════════╝ -->
 
 </div><!-- /app -->
 
